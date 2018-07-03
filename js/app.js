@@ -35,8 +35,14 @@ for(let i = 0; i < listOfCards.length; i++){
 
         //if cards didn't match
       } else {
-        this.classList.remove("open", "show");
-        displayCard[0].classList.remove("open", "show");
+        let liveCard = this;
+        let openCard = displayCard[0];
+
+        setTimeout(function() {
+          liveCard.classList.remove("open", "show");
+          openCard.classList.remove("open", "show");
+        },400);
+
         displayCard = [];
       }
     } else {
