@@ -11,6 +11,7 @@ const listOfCards = [ "fa fa-diamond", "fa fa-diamond",
 const cardContainer = document.querySelector('.deck');
 
 let displayCard = [];
+matchedCards = [];
 
 //create the cards
 for(let i = 0; i < listOfCards.length; i++){
@@ -26,12 +27,16 @@ for(let i = 0; i < listOfCards.length; i++){
 
       card.classList.add("open", "show");
       displayCard.push(this);
+
       //comparing cards to see if they match
       if (this.innerHTML === displayCard[0].innerHTML) {
 
         this.classList.add("match");
         displayCard[0].classList.add("match");
+        matchedCards.push(this, displayCard[0]);
         displayCard = [];
+        //check if all cards have matched
+          finishedGame();
 
         //if cards didn't match
       } else {
@@ -41,7 +46,7 @@ for(let i = 0; i < listOfCards.length; i++){
         setTimeout(function() {
           liveCard.classList.remove("open", "show");
           openCard.classList.remove("open", "show");
-        },400);
+        },200);
 
         displayCard = [];
       }
@@ -52,6 +57,11 @@ for(let i = 0; i < listOfCards.length; i++){
   });
 }
 
+function finishedGame(){
+if (listOfCards.length === matchedCards.length) {
+  alert("good Job!");
+}
+};
 
 /*
 * Display the cards on the page
