@@ -44,14 +44,15 @@ for(let i = 0; i < listOfCards.length; i++){
         let openCard = displayCard[0];
 
         setTimeout(function() {
-          liveCard.classList.remove("open", "show");
-          openCard.classList.remove("open", "show");
+          liveCard.classList.remove("open", "show","prevent");
+          openCard.classList.remove("open", "show","prevent");
+          displayCard = [];
+
         },200);
 
-        displayCard = [];
       }
     } else {
-      this.classList.add("open", "show");
+      this.classList.add("open", "show", "prevent");
       displayCard.push(this);
     }
   });
