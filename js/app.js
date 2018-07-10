@@ -89,9 +89,23 @@ let move = 0;
 function addMove() {
   move++;
   moveContainer.innerHTML = move;
+
+  score();
 }
 
+/*
+*Score
+*/
+const starsContainer = document.querySelector(".stars");
+function score() {
+  if ( move > 24) {
+starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li>`;
 
+}else if( move > 18) {
+    starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li><li><i class="fa fa-star"> </i></li>`;
+  }
+
+};
 /*
 *Restart method
 */
