@@ -26,6 +26,7 @@ for(let i = 0; i < listOfCards.length; i++){
 }
 };
 
+
 /*
 *invoke click event
 */
@@ -78,7 +79,9 @@ if (listOfCards.length === matchedCards.length) {
   alert("good Job!");
 }
 };
+
 //invoke init() to start the Game
+shuffle();
 init();
 
 /*
@@ -98,10 +101,10 @@ function addMove() {
 */
 const starsContainer = document.querySelector(".stars");
 function score() {
-  if ( move > 24) {
+  if ( move > 20) {
 starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li>`;
 
-}else if( move > 18) {
+}else if( move > 15) {
     starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li><li><i class="fa fa-star"> </i></li>`;
   }
 
@@ -117,6 +120,9 @@ restartButton.addEventListener("click", function() {
 
   //invoke init to star new game
   init();
+
+  //shufle cards after reset
+  shuffle();
 
   //reset matched cards
   matchedCards = [];
@@ -136,18 +142,19 @@ restartButton.addEventListener("click", function() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = listOfCards.length, temporaryValue, randomIndex;
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+    temporaryValue = listOfCards[currentIndex];
+    listOfCards[currentIndex] = listOfCards[randomIndex];
+    listOfCards[randomIndex] = temporaryValue;
   }
 
-  return array;
+  return listOfCards;
 }
+
 
 
 /*
