@@ -14,11 +14,23 @@ let displayCard = [];
 matchedCards = [];
 
 //create the cards
+//function to intialize the game
+function init() {
 for(let i = 0; i < listOfCards.length; i++){
   const card  = document.createElement('li');
   card.classList.add("card");
   card.innerHTML = "<i class='" + listOfCards[i] + "'</i>" ;
   cardContainer.appendChild(card);
+//add click event to each card
+  click(card);
+}
+};
+
+/*
+*invoke click event
+*/
+
+function click(card) {
 
   //Click Event to display cards
   card.addEventListener("click", function() {
@@ -55,14 +67,18 @@ for(let i = 0; i < listOfCards.length; i++){
       this.classList.add("open", "show", "prevent");
       displayCard.push(this);
     }
+
   });
-}
+};
 
 function finishedGame(){
 if (listOfCards.length === matchedCards.length) {
   alert("good Job!");
 }
 };
+//invoke init() to start the Game
+init();
+
 
 /*
 * Display the cards on the page
