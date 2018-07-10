@@ -55,6 +55,8 @@ function click(card) {
         let liveCard = this;
         let openCard = displayCard[0];
 
+        addMove();
+
         setTimeout(function() {
           liveCard.classList.remove("open", "show","prevent");
           openCard.classList.remove("open", "show","prevent");
@@ -80,6 +82,17 @@ if (listOfCards.length === matchedCards.length) {
 init();
 
 /*
+*Moves Panel
+*/
+const moveContainer = document.querySelector(".moves");
+let move = 0;
+function addMove() {
+  move++;
+  moveContainer.innerHTML = move;
+}
+
+
+/*
 *Restart method
 */
 const restartButton = document.querySelector('.restart');
@@ -93,6 +106,10 @@ restartButton.addEventListener("click", function() {
 
   //reset matched cards
   matchedCards = [];
+
+  //reset the Moves
+  move = 0;
+  moveContainer.innerHTML = "";
 
 });
 
