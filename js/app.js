@@ -79,6 +79,22 @@ if (listOfCards.length === matchedCards.length) {
 //invoke init() to start the Game
 init();
 
+/*
+*Restart method
+*/
+const restartButton = document.querySelector('.restart');
+restartButton.addEventListener("click", function() {
+
+  //reset cards
+  cardContainer.innerHTML = "";
+
+  //invoke init to star new game
+  init();
+
+  //reset matched cards
+  matchedCards = [];
+
+});
 
 /*
 * Display the cards on the page
