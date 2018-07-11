@@ -123,8 +123,8 @@ function click(card) {
 function finishedGame(){
 if (listOfCards.length === matchedCards.length) {
   clearInterval(Interval);
-  swal( "Good Job",
-  "You Finished in " + seconds +":" + tens + " with "  + move + " Moves " +" \n \n" + "Wanna Play Again?" ,
+  swal( "Good Job!",
+  "You Finished in " + seconds +":" + tens + " with "  + move + " Moves " + "\n \n" + "Wanna Play Again?" ,
   "success")
 
 }

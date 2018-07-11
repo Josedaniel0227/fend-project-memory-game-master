@@ -7,12 +7,17 @@
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The game will randomly shuffle the cards. The user will try to match all the cards and wins once all cards have successfully been matched.
 
-To get started, open `js/app.js` and start building out the app's functionality
+Once user wins, a Popup will appear to congratulate the player and ask if they want to play again. It will let the user  know how much time it took to win the game, and what the score was.
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+The restart button allows the player to reset the game board, the timer, and the star rating.
 
+The game displays a star rating (from 1 to 3) that reflects the player's performance. At the beginning of a game, it displays 3 stars. After some numbers of moves, it changes to a lower star rating. After a few more moves, it would change to a even lower star rating (down to 1).
+
+When the player starts a game, a displayed timer starts. Once the player wins the game, the timer stops.
+
+Once the player clicks on a card, the game displays the current number of moves a user has made.
 ## Contributing
 
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
