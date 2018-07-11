@@ -152,10 +152,10 @@ function addMove() {
 */
 const starsContainer = document.querySelector(".stars");
 function score() {
-  if ( move > 15) {
+  if ( move > 8) {
 starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li>`;
 
-}else if( move > 10) {
+}else if( move > 6) {
     starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li><li><i class="fa fa-star"> </i></li>`;
   }
 
