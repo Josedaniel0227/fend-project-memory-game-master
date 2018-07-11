@@ -167,12 +167,17 @@ starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li>`;
 
 const restartButton = document.querySelector('.restart');
 restartButton.addEventListener("click", function() {
-
+  //reset clock
   clearInterval(Interval);
   tens = "00";
   seconds = "00";
   appendTens.innerHTML = tens;
   appendSeconds.innerHTML = seconds;
+
+  //reset Score
+  score()
+  starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li><li><i class="fa fa-star"> </i></li><li><i class="fa fa-star"> </i></li>`;
+
   //reset cards
   cardContainer.innerHTML = "";
 
