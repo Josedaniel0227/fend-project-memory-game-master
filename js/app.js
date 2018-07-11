@@ -25,7 +25,49 @@ for(let i = 0; i < listOfCards.length; i++){
   click(card);
 }
 };
+///____________________________________________
 
+
+  var seconds = 00;
+  var tens = 00;
+  var appendTens = document.getElementById("tens")
+  var appendSeconds = document.getElementById("seconds")
+  var buttonStop = document.getElementById('button-stop');
+  var Interval ;
+
+
+
+    buttonStop.onclick = function() {
+       clearInterval(Interval);
+  }
+
+
+  function startTimer () {
+    tens++;
+
+    if(tens < 9){
+      appendTens.innerHTML = "0" + tens;
+    }
+
+    if (tens > 9){
+      appendTens.innerHTML = tens;
+
+    }
+
+    if (tens > 99) {
+      console.log("seconds");
+      seconds++;
+      appendSeconds.innerHTML = "0" + seconds;
+      tens = 0;
+      appendTens.innerHTML = "0" + 0;
+    }
+
+    if (seconds > 9){
+      appendSeconds.innerHTML = seconds;
+    }
+  }
+
+///____________________________________________
 
 /*
 *invoke click event
@@ -37,6 +79,10 @@ function click(card) {
   card.addEventListener("click", function() {
     //fliping the cards
     if (displayCard.length === 1){
+
+      //start the clock
+      clearInterval(Interval);
+      Interval = setInterval(startTimer, 10);
 
       card.classList.add("open", "show");
       displayCard.push(this);
@@ -73,17 +119,22 @@ function click(card) {
 
   });
 };
-
+////______________________________________________________
 function finishedGame(){
 if (listOfCards.length === matchedCards.length) {
-  alert("good Job!");
+  clearInterval(Interval);
+  swal( "Good Job",
+  "You Finished in " + seconds +":" + tens + " with "  + move + " Moves " +" \n \n" + "Wanna Play Again?" ,
+  "success")
+
 }
 };
+/////____________________________________________________
 
 //invoke init() to start the Game
+
 shuffle();
 init();
-
 /*
 *Moves Panel
 */
@@ -95,26 +146,33 @@ function addMove() {
 
   score();
 }
-
+//____________________________________________
 /*
 *Score
 */
 const starsContainer = document.querySelector(".stars");
 function score() {
-  if ( move > 20) {
+  if ( move > 15) {
 starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li>`;
 
-}else if( move > 15) {
+}else if( move > 10) {
     starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li><li><i class="fa fa-star"> </i></li>`;
   }
 
 };
+//____________________________________________
 /*
 *Restart method
 */
+
 const restartButton = document.querySelector('.restart');
 restartButton.addEventListener("click", function() {
 
+  clearInterval(Interval);
+  tens = "00";
+  seconds = "00";
+  appendTens.innerHTML = tens;
+  appendSeconds.innerHTML = seconds;
   //reset cards
   cardContainer.innerHTML = "";
 
@@ -132,7 +190,7 @@ restartButton.addEventListener("click", function() {
   moveContainer.innerHTML = "";
 
 });
-
+//____________________________________________
 /*
 * Display the cards on the page
 *   - shuffle the list of cards using the provided "shuffle" method below
