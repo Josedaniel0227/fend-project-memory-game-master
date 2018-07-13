@@ -199,14 +199,17 @@ restartButton.addEventListener("click", function() {
   // reset cards
   cardContainer.innerHTML = "";
 
+  // shufle cards after reset
+  shuffle();
+  
   // invoke init to star new game
   init();
 
-  // shufle cards after reset
-  shuffle();
-
   // reset matched cards
   matchedCards = [];
+
+  // prevent trigering a match after reseting
+  displayCard = [];
 
   // reset the Moves
   move = 0;
@@ -221,7 +224,7 @@ restartButton.addEventListener("click", function() {
 */
 
 
-function shuffle(array) {
+function shuffle() {
   let currentIndex = listOfCards.length, temporaryValue, randomIndex;
 
   while (currentIndex !== 0) {
