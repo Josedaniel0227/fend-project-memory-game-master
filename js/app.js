@@ -1,6 +1,7 @@
 /*
-* Create a list that holds all of your cards
+* List that holds all the cards
 */
+
 const listOfCards = [ "fa fa-diamond", "fa fa-diamond",
 "fa fa-paper-plane-o", "fa fa-paper-plane-o",
 "fa fa-anchor", "fa fa-anchor",
@@ -11,10 +12,14 @@ const listOfCards = [ "fa fa-diamond", "fa fa-diamond",
 const cardContainer = document.querySelector('.deck');
 
 let displayCard = [];
-matchedCards = [];
+let matchedCards = [];
 
-//create the cards
-//function to intialize the game
+/*
+* - Create the cards
+* - loop through each card and create its HTML
+* - Function to intialize the game
+*/
+
 function init() {
 for(let i = 0; i < listOfCards.length; i++){
   const card  = document.createElement('li');
@@ -27,15 +32,17 @@ for(let i = 0; i < listOfCards.length; i++){
 };
 ///____________________________________________
 
+/*
+* - Clock display
+* - Displays the current game time in seconds
+*/
 
-  var seconds = 00;
-  var tens = 00;
-  var appendTens = document.getElementById("tens")
-  var appendSeconds = document.getElementById("seconds")
-  var buttonStop = document.getElementById('button-stop');
-  var Interval ;
-
-
+  let seconds = 00;
+  let tens = 00;
+  let appendTens = document.getElementById("tens")
+  let appendSeconds = document.getElementById("seconds")
+  let buttonStop = document.getElementById('button-stop');
+  let Interval ;
 
     buttonStop.onclick = function() {
        clearInterval(Interval);
@@ -70,34 +77,36 @@ for(let i = 0; i < listOfCards.length; i++){
 ///____________________________________________
 
 /*
-*invoke click event
+* - Invoke click event
+* - Display the cards on the page
 */
 
 function click(card) {
 
-  //Click Event to display cards
+  // Event listener for a card. If a card is clicked, card's symbol is displayed
   card.addEventListener("click", function() {
-    //fliping the cards
     if (displayCard.length === 1){
 
-      //start the clock
+      // Clicking in a card starts the clock
       clearInterval(Interval);
       Interval = setInterval(startTimer, 10);
 
       card.classList.add("open", "show");
       displayCard.push(this);
 
-      //comparing cards to see if they match
+      // Adding the cards to a *list* of "open" cards.
+      // If the cards do match, lock the cards in the open position
       if (this.innerHTML === displayCard[0].innerHTML) {
 
         this.classList.add("match");
         displayCard[0].classList.add("match");
         matchedCards.push(this, displayCard[0]);
         displayCard = [];
-        //check if all cards have matched
+        // check if all cards have matched
+
           finishedGame();
 
-        //if cards didn't match
+       // If the cards do not match, remove the cards from the list and hide the card's symbol
       } else {
         let liveCard = this;
         let openCard = displayCard[0];
@@ -119,24 +128,31 @@ function click(card) {
 
   });
 };
-////______________________________________________________
+// ______________________________________________________
+
+/*
+* - Final Modal
+* - If all cards have matched, display a message with the final score
+* - POPUP BOX from https://sweetalert2.github.io/
+*/
 function finishedGame(){
 if (listOfCards.length === matchedCards.length) {
   clearInterval(Interval);
   swal( "Good Job!",
   "You Finished in " + seconds +":" + tens + " with "  + move + " Moves " + "\n \n" + "Wanna Play Again?" ,
   "success")
-
 }
 };
-/////____________________________________________________
+// ____________________________________________________
 
 //invoke init() to start the Game
 
 shuffle();
 init();
+
 /*
-*Moves Panel
+* - Moves Panel
+* - Increment the move counter and display it on the page
 */
 const moveContainer = document.querySelector(".moves");
 let move = 0;
@@ -146,9 +162,11 @@ function addMove() {
 
   score();
 }
-//____________________________________________
+// ____________________________________________
+
 /*
-*Score
+* - Score
+* - Decrease number of stars according to moves
 */
 const starsContainer = document.querySelector(".stars");
 function score() {
@@ -158,54 +176,53 @@ starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li>`;
 }else if( move > 6) {
     starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li><li><i class="fa fa-star"> </i></li>`;
   }
-
 };
-//____________________________________________
+// ____________________________________________
+
 /*
-*Restart method
+* - Restart method
 */
 
 const restartButton = document.querySelector('.restart');
 restartButton.addEventListener("click", function() {
-  //reset clock
+  // Clear the clock
   clearInterval(Interval);
   tens = "00";
   seconds = "00";
   appendTens.innerHTML = tens;
   appendSeconds.innerHTML = seconds;
 
-  //reset Score
+  // reset Score
   score()
   starsContainer.innerHTML = `<li><i class="fa fa-star"> </i></li><li><i class="fa fa-star"> </i></li><li><i class="fa fa-star"> </i></li>`;
 
-  //reset cards
+  // reset cards
   cardContainer.innerHTML = "";
 
-  //invoke init to star new game
+  // invoke init to star new game
   init();
 
-  //shufle cards after reset
+  // shufle cards after reset
   shuffle();
 
-  //reset matched cards
+  // reset matched cards
   matchedCards = [];
 
-  //reset the Moves
+  // reset the Moves
   move = 0;
   moveContainer.innerHTML = "";
 
 });
-//____________________________________________
+// ____________________________________________
+
 /*
-* Display the cards on the page
-*   - shuffle the list of cards using the provided "shuffle" method below
-*   - loop through each card and create its HTML
-*   - add each card's HTML to the page
+* - shuffle the list of cards using the provided "shuffle" method
+* - Shuffle function from http://stackoverflow.com/a/2450976
 */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+
 function shuffle(array) {
-  var currentIndex = listOfCards.length, temporaryValue, randomIndex;
+  let currentIndex = listOfCards.length, temporaryValue, randomIndex;
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -217,16 +234,4 @@ function shuffle(array) {
 
   return listOfCards;
 }
-
-
-
-/*
-* set up the event listener for a card. If a card is clicked:
-*  - display the card's symbol (put this functionality in another function that you call from this one)
-*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-*  - if the list already has another card, check to see if the two cards match
-*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
-*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
-*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
-*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
-*/
+// ____________________________________________
