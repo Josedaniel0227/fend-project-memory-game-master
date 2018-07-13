@@ -136,19 +136,20 @@ function click(card) {
 * - POPUP BOX from https://sweetalert2.github.io/
 */
 function finishedGame(){
+  // if finished game with 1 star
  if (listOfCards.length === matchedCards.length && move > 8) {
-   // if (matchedCards.length === 2, move > 2 ) {
   clearInterval(Interval);
   swal( "Good Job!",
   "You Finished in " + seconds +":" + tens + " with "  + move + " Moves " + "\n" + "\n" + " ★ Better Luck Next Time!" + "\n" + "\n" + " Wanna Play Again?" ,
   "success")
+  // if finished game with 2 stars
 } else if (move > 6 && listOfCards.length === matchedCards.length) {
  clearInterval(Interval);
  swal( "Good Job!",
  "You Finished in " + seconds +":" + tens + " with "  + move + " Moves " + "\n" + "\n" + " ★★ Good!" + "\n" + "\n" + " Wanna Play Again?" ,
  "success")
 } else if (listOfCards.length === matchedCards.length) {
-  // if (matchedCards.length === 2, move > 2 ) {
+  // if finish game with 3 stars
  clearInterval(Interval);
  swal( "Good Job!",
  "You Finished in " + seconds +":" + tens + " with "  + move + " Moves " + "\n" + "\n" + " ★★★ Awesome!" + "\n" + "\n" + " Wanna Play Again?" ,
